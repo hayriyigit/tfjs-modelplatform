@@ -6,7 +6,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 let mode = 'development';
 let target = 'web';
-plugins = [
+
+const plugins = [
   new CleanWebpackPlugin(),
   new MiniCssExtractPlugin(),
   new HtmlWebpackPlugin({
@@ -28,6 +29,7 @@ module.exports = {
   target: target,
 
   entry: './src/index.js',
+
   output: {
     path: path.resolve(__dirname, 'dist'),
     assetModuleFilename: 'images/[hash][ext][query]',
@@ -36,15 +38,13 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        type: 'asset',
       },
       {
         test: /\.(s[ac]|c)ss$/i,
         use: [
+          // 'style-loader',
           MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
@@ -52,17 +52,26 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpe?g|gif|svg)$/i,
-        type: 'asset',
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
       },
     ],
   },
+
   plugins: plugins,
+
   resolve: {
-    extensions: ['js', 'jsx'],
+    extensions: ['.js', '.jsx'],
   },
+
   devtool: 'source-map',
+
   devServer: {
     contentBase: './dist',
+    historyApiFallback: true,
+    hot: true,
   },
 };
