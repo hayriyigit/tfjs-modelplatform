@@ -12,6 +12,10 @@ module.exports = {
   mode: mode,
   target: target,
 
+  output: {
+    assetModuleFilename: 'images/[hash][ext][query]',
+  },
+
   module: {
     rules: [
       {
@@ -30,11 +34,15 @@ module.exports = {
           'sass-loader',
         ],
       },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        type: 'asset',
+      },
     ],
   },
   plugins: [new MiniCssExtractPlugin()],
-  resolve:{
-    extensions: ['js','jsx'],
+  resolve: {
+    extensions: ['js', 'jsx'],
   },
   devtool: 'source-map',
   devServer: {
