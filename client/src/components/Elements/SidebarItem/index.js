@@ -1,8 +1,14 @@
-import React from 'react';
-
 export default function index({ name }) {
+  const onDragStart = (event, nodeType) => {
+    event.dataTransfer.setData('application/reactflow', nodeType);
+    event.dataTransfer.effectAllowed = 'move';
+  };
   return (
-    <div className="dndnode" draggable>
+    <div
+      className="dndnode"
+      onDragStart={(event) => onDragStart(event, 'Conv2D')}
+      draggable
+    >
       {name}
 
       <style jsx>

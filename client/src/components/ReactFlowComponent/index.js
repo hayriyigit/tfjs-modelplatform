@@ -1,32 +1,22 @@
-import { useCallback, useState } from 'react';
-import ReactFlow, { addEdge, Controls, Background } from 'react-flow-renderer';
-import { Conv2D } from '../NodeTypes';
+import { useCallback, useState, useRef } from 'react';
+import ReactFlow, {
+  addEdge,
+  removeElements,
+  Controls,
+} from 'react-flow-renderer';
+import { nodeTypes } from './node-types';
 
 import './reactflowcomponent.scss';
 
-const nodeTypes = {
-  Conv2D,
-};
-
-const initialElements = [
-  {
-    id: '1',
-    type: 'Conv2D',
-    data: { label: 'Custom node 1' },
-    position: { x: 100, y: 100 },
-  },
-  {
-    id: '2',
-    type: 'Conv2D',
-    data: { label: 'Custom node 2' },
-    position: { x: 100, y: 350 },
-  },
-];
+let id = 0;
+const getId = () => `dndnode_${id++}`;
 
 export default function App() {
-  const [elements, setElements] = useState(initialElements);
+  const reactFlowWrapper = useRef(null);
+  const [reactFlowInstance, setReactFlowInstance] = useState(null);
+  const [elements, setElements] = useState([]);
 
-  const onConnect = useCallback((params) => {
+  const onConnect = (params) => {
     const source_node_index = elements.findIndex(
       (item) => item.id === params.source
     );
@@ -39,19 +29,58 @@ export default function App() {
       els[target_node_index].data.target_active = true;
       return addEdge({ ...params }, els);
     });
-  }, []);
+  };
+
+  const onElementsRemove = useCallback(
+    (elementsToRemove) =>
+      setElements((els) => removeElements(elementsToRemove, els)),
+    []
+  );
+
+  const onLoad = (_reactFlowInstance) =>
+    setReactFlowInstance(_reactFlowInstance);
+
+  const onDragOver = (event) => {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = 'move';
+  };
+
+  const onDrop = (event) => {
+    event.preventDefault();
+    const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect();
+    const type = event.dataTransfer.getData('application/reactflow');
+    const position = reactFlowInstance.project({
+      x: event.clientX - reactFlowBounds.left,
+      y: event.clientY - reactFlowBounds.top,
+    });
+    const newNode = {
+      id: getId(),
+      type,
+      position,
+      data: { label: `${type} node` },
+    };
+
+    setElements((es) => es.concat(newNode));
+  };
 
   return (
-    <ReactFlow
+    <div
       style={{
         height: '100%',
-        backgroundColor: '#191929',
       }}
-      elements={elements}
-      nodeTypes={nodeTypes}
-      onConnect={onConnect}
+      ref={reactFlowWrapper}
     >
-      <Controls />
-    </ReactFlow>
+      <ReactFlow
+        elements={elements}
+        nodeTypes={nodeTypes}
+        onConnect={onConnect}
+        onElementsRemove={onElementsRemove}
+        onLoad={onLoad}
+        onDrop={onDrop}
+        onDragOver={onDragOver}
+      >
+        <Controls />
+      </ReactFlow>
+    </div>
   );
 }

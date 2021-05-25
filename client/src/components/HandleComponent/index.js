@@ -7,12 +7,12 @@ const input_active = {
   borderRadius: 0,
   width: 19,
   height: 'calc(100% - 10px)',
-  backgroundColor: '#232136',
+  backgroundColor: '#6866a7',
 };
 
 const input_inactive = {
   ...input_active,
-  backgroundColor: '#403f66',
+  backgroundColor: '#404066',
 };
 
 const index = memo(({ type, position, id, active }) => {

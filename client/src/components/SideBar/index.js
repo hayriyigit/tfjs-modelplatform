@@ -49,7 +49,7 @@ export default function index() {
           font-weight: bold;
           font-size: 1.15em;
         }
-        svg {
+        .ant-collapse-arrow svg {
           width: 1.2em !important;
           height: 1.2em !important;
         }
