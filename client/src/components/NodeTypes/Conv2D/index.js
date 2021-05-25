@@ -1,4 +1,4 @@
-import HandleComponent from '../HandleComponent';
+import HandleComponent from '../../HandleComponent';
 
 const index = ({ data }) => {
   return (

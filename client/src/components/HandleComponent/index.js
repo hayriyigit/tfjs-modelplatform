@@ -7,7 +7,7 @@ const input_active = {
   borderRadius: 0,
   width: 19,
   height: 'calc(100% - 10px)',
-  backgroundColor: '#6a66a5',
+  backgroundColor: '#232136',
 };
 
 const input_inactive = {
