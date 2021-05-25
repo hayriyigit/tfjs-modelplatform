@@ -1,10 +1,14 @@
 import ReactFlowComponent from './components/ReactFlowComponent';
+
+// import components
+import SideBar from './components/SideBar';
+
 import './styles/global.scss';
 
 export default function App() {
   return (
     <div className="container">
-      <div className="sidebar"></div>
+      <SideBar />
       <div className="content">
         <div className="flow">
           <ReactFlowComponent />
