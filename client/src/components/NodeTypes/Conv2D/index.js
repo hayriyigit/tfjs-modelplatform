@@ -1,4 +1,5 @@
 import HandleComponent from '../../HandleComponent';
+import Conv2DForm from './Conv2DForm';
 
 const index = ({ data }) => {
   return (
@@ -11,18 +12,7 @@ const index = ({ data }) => {
       <div className="node-body">
         <div className="node_header">{data.label}</div>
         <div className="node_content">
-          <form action="">
-            <label htmlFor="input">Sample input: </label>
-            <input name="input" type="text" />
-            <br />
-            <label htmlFor="cars">Choose a car:</label>
-            <select name="cars" id="cars">
-              <option value="volvo">Volvo</option>
-              <option value="saab">Saab</option>
-              <option value="mercedes">Mercedes</option>
-              <option value="audi">Audi</option>
-            </select>
-          </form>
+          <Conv2DForm />
         </div>
       </div>
       <HandleComponent
