@@ -1,10 +1,10 @@
 import { NodeWrapper } from '../Utils';
-import Conv2DForm from './Conv2DForm';
+import DropoutForm from './DropoutForm';
 
-export default function Conv2D({ data }) {
+export default function Dropout({ data }) {
   return (
     <NodeWrapper data={data}>
-      <Conv2DForm />
+      <DropoutForm />
     </NodeWrapper>
   );
 }

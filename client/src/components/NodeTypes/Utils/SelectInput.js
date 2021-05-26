@@ -17,6 +17,10 @@ export default function SelectInput({ label, name, options }) {
             background-color: transparent !important;
             color: #fff;
           }
+          .ant-form-item-label > label {
+            color: #ccc !important;
+            font-size: 1.15em !important;
+          }
           .ant-select-arrow {
             color: #fff;
           }

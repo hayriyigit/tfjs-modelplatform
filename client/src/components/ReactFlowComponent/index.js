@@ -4,7 +4,7 @@ import ReactFlow, {
   removeElements,
   Controls,
 } from 'react-flow-renderer';
-import { nodeTypes } from './node-types';
+import { nodeTypes } from '../NodeTypes';
 
 import './reactflowcomponent.scss';
 

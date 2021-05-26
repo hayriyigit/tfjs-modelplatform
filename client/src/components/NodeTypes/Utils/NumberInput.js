@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import { Form, InputNumber } from 'antd';
 
-export default function NumberInput({ label, name, isInt }) {
+export default function NumberInput({ label, name, isInt, max, step }) {
   const [status, setStatus] = useState(true);
 
   const onchange = (e) => {
     if (isInt) {
       (e % 1 === 0) & (e !== null) ? setStatus(true) : setStatus(false);
-    } else {
-      pass;
     }
   };
   return (
@@ -18,12 +16,18 @@ export default function NumberInput({ label, name, isInt }) {
       validateStatus={status ? 'success' : 'error'}
       help={!status ? `${label} must be integer` : null}
     >
-      <InputNumber defaultValue={0} min={0} step={1} onChange={onchange} />
+      <InputNumber
+        defaultValue={0}
+        min={0}
+        max={max ? max : null}
+        step={step ? step : 1}
+        onChange={onchange}
+      />
       <style jsx>
         {`
           .ant-form-item-label > label {
             color: #ccc !important;
-            font-size: 1.15em;
+            font-size: 1.15em !important;
           }
           .ant-input-number {
             background-color: transparent !important;

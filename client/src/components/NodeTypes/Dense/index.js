@@ -1,13 +1,10 @@
-import { NodeWrapper } from "../Utils";
+import { NodeWrapper } from '../Utils';
 import DenseForm from './DenseForm';
 
-
-const index = ({ data }) => {
+export default function Dense({ data }) {
   return (
     <NodeWrapper data={data}>
-      <DenseForm/>
+      <DenseForm />
     </NodeWrapper>
   );
-};
-
-export default index;
+}

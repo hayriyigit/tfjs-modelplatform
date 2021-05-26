@@ -1,10 +1,10 @@
 import { NodeWrapper } from '../Utils';
-import Conv2DForm from './Conv2DForm';
+import FlattenForm from './FlattenForm';
 
-export default function Conv2D({ data }) {
+export default function Flatten({ data }) {
   return (
     <NodeWrapper data={data}>
-      <Conv2DForm />
+      <FlattenForm />
     </NodeWrapper>
   );
 }

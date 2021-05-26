@@ -9,24 +9,27 @@ export default function index() {
     <div className="sidebar">
       <Collapse expandIconPosition="right" defaultActiveKey={1} ghost>
         <Panel header="Primitive Layers" key="1">
-          <SidebarItem name="Input" />
+          <SidebarItem name="Input" type="Input" />
           <SidebarItem name="Dense" type="Dense" />
-          <SidebarItem name="Flatten" />
-          <SidebarItem name="Concatenate" />
+          <SidebarItem name="Flatten" type="Flatten" />
+          <SidebarItem name="Concatenate" type="Concatenate" />
         </Panel>
         <Panel header="Convolutional Layers" key="2">
           <SidebarItem name="Conv2D" type="Conv2D" />
-          <SidebarItem name="SepConv2D" />
+          <SidebarItem name="SepConv2D" type="SepConv2D" />
         </Panel>
         <Panel header="Pooling Layers" key="3">
-          <SidebarItem name="AvgPooling2D" />
-          <SidebarItem name="MaxPool2D" />
-          <SidebarItem name="GlobalAveragePooling2D" />
-          <SidebarItem name="GlobalMaxPooling2D" />
+          <SidebarItem name="AvgPooling2D" type="AvgPooling2D" />
+          <SidebarItem name="MaxPool2D" type="MaxPool2D" />
+          <SidebarItem
+            name="GlobalAveragePooling2D"
+            type="GlobalAveragePooling2D"
+          />
+          <SidebarItem name="GlobalMaxPooling2D" type="GlobalMaxPooling2D" />
         </Panel>
         <Panel header="Regularizers" key="4">
-          <SidebarItem name="Dropout" />
-          <SidebarItem name="BatchNorm" />
+          <SidebarItem name="Dropout" type="Dropout" />
+          <SidebarItem name="BatchNorm" type="BatchNorm" />
         </Panel>
       </Collapse>
 
