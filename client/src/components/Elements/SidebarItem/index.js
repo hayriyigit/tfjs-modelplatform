@@ -1,4 +1,4 @@
-export default function index({ name }) {
+export default function index({ name, type }) {
   const onDragStart = (event, nodeType) => {
     event.dataTransfer.setData('application/reactflow', nodeType);
     event.dataTransfer.effectAllowed = 'move';
@@ -6,7 +6,7 @@ export default function index({ name }) {
   return (
     <div
       className="dndnode"
-      onDragStart={(event) => onDragStart(event, 'Conv2D')}
+      onDragStart={(event) => onDragStart(event, type)}
       draggable
     >
       {name}

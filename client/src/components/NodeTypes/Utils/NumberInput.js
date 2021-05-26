@@ -6,7 +6,7 @@ export default function NumberInput({ label, name, isInt }) {
 
   const onchange = (e) => {
     if (isInt) {
-      (e % 1 === 0) & e ? setStatus(true) : setStatus(false);
+      (e % 1 === 0) & (e !== null) ? setStatus(true) : setStatus(false);
     } else {
       pass;
     }

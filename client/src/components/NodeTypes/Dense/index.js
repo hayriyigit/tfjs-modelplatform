@@ -1,10 +1,11 @@
-import { NodeWrapper } from '../Utils';
-import Conv2DForm from './Conv2DForm';
+import { NodeWrapper } from "../Utils";
+import DenseForm from './DenseForm';
+
 
 const index = ({ data }) => {
   return (
     <NodeWrapper data={data}>
-      <Conv2DForm />
+      <DenseForm/>
     </NodeWrapper>
   );
 };

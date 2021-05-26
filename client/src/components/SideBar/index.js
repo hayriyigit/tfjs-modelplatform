@@ -10,12 +10,12 @@ export default function index() {
       <Collapse expandIconPosition="right" defaultActiveKey={1} ghost>
         <Panel header="Primitive Layers" key="1">
           <SidebarItem name="Input" />
-          <SidebarItem name="Dense" />
+          <SidebarItem name="Dense" type="Dense" />
           <SidebarItem name="Flatten" />
           <SidebarItem name="Concatenate" />
         </Panel>
         <Panel header="Convolutional Layers" key="2">
-          <SidebarItem name="Conv2D" />
+          <SidebarItem name="Conv2D" type="Conv2D" />
           <SidebarItem name="SepConv2D" />
         </Panel>
         <Panel header="Pooling Layers" key="3">
