@@ -4,7 +4,7 @@ import AvgPooling2DForm from './AvgPooling2DForm';
 export default function AvgPooling2D({ data }) {
   return (
     <NodeWrapper data={data}>
-      <AvgPooling2DForm />
+      <AvgPooling2DForm onChange={data.onChange}/>
     </NodeWrapper>
   );
 }

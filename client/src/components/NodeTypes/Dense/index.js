@@ -4,7 +4,7 @@ import DenseForm from './DenseForm';
 export default function Dense({ data }) {
   return (
     <NodeWrapper data={data}>
-      <DenseForm />
+      <DenseForm onChange={data.onChange}/>
     </NodeWrapper>
   );
 }

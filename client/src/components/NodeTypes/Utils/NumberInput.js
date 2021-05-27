@@ -1,14 +1,31 @@
 import { useState } from 'react';
 import { Form, InputNumber } from 'antd';
 
-export default function NumberInput({ label, name, isInt, max, step }) {
+export default function NumberInput({
+  label,
+  name,
+  isInt,
+  max,
+  step,
+  onChange,
+}) {
   const [status, setStatus] = useState(true);
 
+  const isValid = (e) =>  (e % 1 === 0) & (e !== null) ? true : false;
+  
   const onchange = (e) => {
     if (isInt) {
-      (e % 1 === 0) & (e !== null) ? setStatus(true) : setStatus(false);
+      if(isValid(e)){
+        setStatus(isValid(e))
+        return onChange(name, e)
+      }else{
+        setStatus(isValid(e))
+      }
+    }else{
+      return onChange(name, e)
     }
   };
+
   return (
     <Form.Item
       label={`${label}:`}

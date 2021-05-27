@@ -3,10 +3,15 @@ import { SelectInput } from '../Utils';
 
 const dataFormat = ['channelsFirst', 'channelsLast'];
 
-export default function FlattenForm() {
+export default function FlattenForm({ onChange }) {
   return (
     <Form layout="vertical">
-      <SelectInput label="Data Format" name="dataFormat" options={dataFormat} />
+      <SelectInput
+        onChange={onChange}
+        label="Data Format"
+        name="dataFormat"
+        options={dataFormat}
+      />
     </Form>
   );
 }

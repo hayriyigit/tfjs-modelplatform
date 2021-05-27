@@ -4,7 +4,7 @@ import FlattenForm from './FlattenForm';
 export default function Flatten({ data }) {
   return (
     <NodeWrapper data={data}>
-      <FlattenForm />
+      <FlattenForm onChange={data.onChange} />
     </NodeWrapper>
   );
 }

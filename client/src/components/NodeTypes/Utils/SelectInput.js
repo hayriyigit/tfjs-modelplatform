@@ -2,12 +2,18 @@ import { Form, Select } from 'antd';
 
 const { Option } = Select;
 
-export default function SelectInput({ label, name, options }) {
+export default function SelectInput({ label, name, options, onChange }) {
   return (
     <Form.Item label={`${label}:`} name={name}>
-      <Select defaultValue={options[0]} style={{ width: '100%' }}>
+      <Select
+        defaultValue={options[0]}
+        onChange={(e) => onChange(name, e)}
+        style={{ width: '100%' }}
+      >
         {options.map((item, i) => (
-          <Option key={i}>{item}</Option>
+          <Option value={item} key={i}>
+            {item}
+          </Option>
         ))}
       </Select>
 

@@ -4,7 +4,7 @@ import DropoutForm from './DropoutForm';
 export default function Dropout({ data }) {
   return (
     <NodeWrapper data={data}>
-      <DropoutForm />
+      <DropoutForm onChange={data.onChange} />
     </NodeWrapper>
   );
 }

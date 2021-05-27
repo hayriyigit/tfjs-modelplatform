@@ -28,21 +28,43 @@ const kernelInitializer = [
   'zeros',
 ];
 
-export default function SepConv2DForm() {
+export default function SepConv2DForm({ onChange }) {
   return (
     <Form layout="vertical">
-      <NumberInput label="Filter Size" name="filters" isInt={true} />
-      <NumberInput label="Kernel Size" name="kernelSize" isInt={true} />
-      <NumberInput label="Strides" name="strides" isInt={true} />
+      <NumberInput
+        onChange={onChange}
+        label="Filter Size"
+        name="filters"
+        isInt={true}
+      />
+      <NumberInput
+        onChange={onChange}
+        label="Kernel Size"
+        name="kernelSize"
+        isInt={true}
+      />
+      <NumberInput
+        onChange={onChange}
+        label="Strides"
+        name="strides"
+        isInt={true}
+      />
       <Collapse ghost>
         <Panel header="Advanced" key="1">
-          <SelectInput label="Padding Mode" name="padding" options={padding} />
           <SelectInput
+            onChange={onChange}
+            label="Padding Mode"
+            name="padding"
+            options={padding}
+          />
+          <SelectInput
+            onChange={onChange}
             label="Activation Function"
             name="activation"
             options={activation}
           />
           <SelectInput
+            onChange={onChange}
             label="Kernel Initializer"
             name="kernelInitializer"
             options={kernelInitializer}
