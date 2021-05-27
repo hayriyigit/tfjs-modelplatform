@@ -5,6 +5,7 @@ import ReactFlow, {
   Controls,
 } from 'react-flow-renderer';
 import { nodeTypes } from '../NodeTypes';
+import { initialValues } from './initialValues';
 
 import './reactflowcomponent.scss';
 
@@ -77,7 +78,7 @@ export default function ReactFlowComponent() {
       id: getId(),
       type,
       position,
-      data: { label: `${type} node`, onChange },
+      data: { label: `${type} node`, onChange, ...initialValues[type] },
     };
 
     setElements((es) => es.concat(newNode));
