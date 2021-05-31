@@ -3,28 +3,37 @@ import { NumberInput, SelectInput } from '../Utils';
 
 const { Panel } = Collapse;
 
-const padding = ['valid', 'same', 'causal'];
+const padding = ['valid', 'same'];
 const activation = [
   'elu',
-  'hardSigmoid',
+  'exponential',
+  'gelu',
+  'hard_sigmoid',
   'linear',
   'relu',
-  'relu6',
   'selu',
   'sigmoid',
   'softmax',
   'softplus',
   'softsign',
+  'swish',
   'tanh',
 ];
-const kernelInitializer = [
-  'glorotNormal',
-  'glorotUniform',
-  'heNormal',
-  'heUniform',
-  'leCunNormal',
-  'leCunUniform',
+const kernel_initializer = [
+  'constant',
+  'glorot_normal',
+  'glorot_uniform',
+  'he_normal',
+  'he_uniform',
+  'identity',
+  'lecun_normal',
+  'lecun_uniform',
   'ones',
+  'orthogonal',
+  'random_normal',
+  'random_uniform',
+  'truncated_normal',
+  'variance_scaling',
   'zeros',
 ];
 
@@ -40,7 +49,7 @@ export default function Conv2DForm({ onChange }) {
       <NumberInput
         onChange={onChange}
         label="Kernel Size"
-        name="kernelSize"
+        name="kernel_size"
         isInt={true}
       />
       <NumberInput
@@ -66,8 +75,8 @@ export default function Conv2DForm({ onChange }) {
           <SelectInput
             onChange={onChange}
             label="Kernel Initializer"
-            name="kernelInitializer"
-            options={kernelInitializer}
+            name="kernel_initializer"
+            options={kernel_initializer}
           />
         </Panel>
       </Collapse>

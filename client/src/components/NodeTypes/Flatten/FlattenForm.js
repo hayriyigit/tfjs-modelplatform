@@ -1,7 +1,7 @@
 import { Form } from 'antd';
 import { SelectInput } from '../Utils';
 
-const dataFormat = ['channelsFirst', 'channelsLast'];
+const data_format = ['channels_last', 'channels_first'];
 
 export default function FlattenForm({ onChange }) {
   return (
@@ -9,8 +9,8 @@ export default function FlattenForm({ onChange }) {
       <SelectInput
         onChange={onChange}
         label="Data Format"
-        name="dataFormat"
-        options={dataFormat}
+        name="data_format"
+        options={data_format}
       />
     </Form>
   );
