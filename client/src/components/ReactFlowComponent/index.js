@@ -4,6 +4,8 @@ import ReactFlow, {
   removeElements,
   Controls,
 } from 'react-flow-renderer';
+
+// import flow components
 import { nodeTypes } from '../NodeTypes';
 import { initialValues } from './initialValues';
 
