@@ -5,6 +5,7 @@ import Dropout from './Dropout';
 import Flatten from './Flatten';
 import MaxPool2D from './MaxPool2D';
 import SepConv2D from './SepConv2D';
+import Input from './Input';
 
 export const nodeTypes = {
   Conv2D,
@@ -14,4 +15,5 @@ export const nodeTypes = {
   Flatten,
   MaxPool2D,
   SepConv2D,
+  Input,
 };
