@@ -28,7 +28,7 @@ export default function ReactFlowComponent() {
       (item) => item.id === nodeRef.current
     );
     setElements((els) => {
-      els[node_index].data[name] = e;
+      els[node_index].args[name] = e;
       return els;
     });
   };
@@ -78,7 +78,8 @@ export default function ReactFlowComponent() {
       id: getId(),
       type,
       position,
-      data: { label: `${type} node`, onChange, ...initialValues[type] },
+      data: { label: `${type} node`, onChange },
+      args: initialValues[type],
     };
 
     setElements((es) => es.concat(newNode));
