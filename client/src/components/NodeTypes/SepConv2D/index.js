@@ -1,4 +1,4 @@
-import { NodeWrapper } from '../Utils';
+import { NodeWrapper } from '../../Utils';
 import SepConv2DForm from './SepConv2DForm';
 
 export default function SepConv2D({ data }) {

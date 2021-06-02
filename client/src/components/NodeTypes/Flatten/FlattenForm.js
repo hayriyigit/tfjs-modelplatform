@@ -1,5 +1,5 @@
 import { Form } from 'antd';
-import { SelectInput } from '../Utils';
+import { SelectInput } from '../../Utils';
 
 const data_format = ['channels_last', 'channels_first'];
 

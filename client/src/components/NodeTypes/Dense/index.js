@@ -1,10 +1,10 @@
-import { NodeWrapper } from '../Utils';
+import { NodeWrapper } from '../../Utils';
 import DenseForm from './DenseForm';
 
 export default function Dense({ data }) {
   return (
     <NodeWrapper data={data}>
-      <DenseForm onChange={data.onChange}/>
+      <DenseForm onChange={data.onChange} />
     </NodeWrapper>
   );
 }

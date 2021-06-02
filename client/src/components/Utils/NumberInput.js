@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Form, InputNumber } from 'antd';
 
-export default function NumberInput({
+export default function printNumberInput({
   label,
   name,
   isInt,
@@ -11,18 +11,18 @@ export default function NumberInput({
 }) {
   const [status, setStatus] = useState(true);
 
-  const isValid = (e) =>  (e % 1 === 0) & (e !== null) ? true : false;
-  
+  const isValid = (e) => ((e % 1 === 0) & (e !== null) ? true : false);
+
   const onchange = (e) => {
     if (isInt) {
-      if(isValid(e)){
-        setStatus(isValid(e))
-        return onChange(name, e)
-      }else{
-        setStatus(isValid(e))
+      if (isValid(e)) {
+        setStatus(isValid(e));
+        return onChange(name, e);
+      } else {
+        setStatus(isValid(e));
       }
-    }else{
-      return onChange(name, e)
+    } else {
+      return onChange(name, e);
     }
   };
 

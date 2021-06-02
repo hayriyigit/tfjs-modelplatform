@@ -1,5 +1,5 @@
 import { Form, Collapse } from 'antd';
-import { NumberInput, SelectInput } from '../Utils';
+import { NumberInput, SelectInput } from '../../Utils';
 
 const { Panel } = Collapse;
 

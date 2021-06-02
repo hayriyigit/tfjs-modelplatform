@@ -1,4 +1,4 @@
-import { NodeWrapper } from '../Utils';
+import { NodeWrapper } from '../../Utils';
 import DropoutForm from './DropoutForm';
 
 export default function Dropout({ data }) {

@@ -1,4 +1,4 @@
-import HandleComponent from '../../HandleComponent';
+import HandleComponent from '../HandleComponent';
 
 export default function NodeWrapper({ children, data }) {
   return (

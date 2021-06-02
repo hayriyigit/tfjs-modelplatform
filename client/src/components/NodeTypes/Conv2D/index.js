@@ -1,4 +1,4 @@
-import { NodeWrapper } from '../Utils';
+import { NodeWrapper } from '../../Utils';
 import Conv2DForm from './Conv2DForm';
 
 export default function Conv2D({ data }) {

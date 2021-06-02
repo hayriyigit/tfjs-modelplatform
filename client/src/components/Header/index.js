@@ -1,20 +1,12 @@
-import { useStoreState } from 'react-flow-renderer';
-import { useSocket } from '../../contexts/SocketContext';
+import CompileModel from './CompileModel';
+import TrainModel from './TrainModel';
 
 export default function index() {
-  const { create_model } = useSocket();
-  const elements = useStoreState((store) => store.nodes);
-  const edges = useStoreState((store) => store.edges);
-  const onClick = (e) => {
-    create_model(elements, edges);
-  };
   return (
     <div className="header">
-      <button className="" onClick={onClick}>
-        CREATE MODEL
-      </button>
-      <button className="">COMPILE MODEL</button>
-      <button className="">TRAIN</button>
+      <CompileModel />
+      <TrainModel />
+
       <style jsx>
         {`
           .header {

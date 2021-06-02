@@ -1,4 +1,4 @@
-import { NodeWrapper } from '../Utils';
+import { NodeWrapper } from '../../Utils';
 import InputForm from './InputForm';
 
 export default function Input({ data }) {

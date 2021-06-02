@@ -1,4 +1,4 @@
-import { NodeWrapper } from '../Utils';
+import { NodeWrapper } from '../../Utils';
 import FlattenForm from './FlattenForm';
 
 export default function Flatten({ data }) {

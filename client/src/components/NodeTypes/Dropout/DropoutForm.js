@@ -1,5 +1,5 @@
 import { Form } from 'antd';
-import { NumberInput } from '../Utils';
+import { NumberInput } from '../../Utils';
 
 export default function DropoutForm({ onChange }) {
   return (

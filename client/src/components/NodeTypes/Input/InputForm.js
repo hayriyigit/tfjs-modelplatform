@@ -1,5 +1,5 @@
 import { Form } from 'antd';
-import { SelectInput } from '../Utils';
+import { SelectInput } from '../../Utils';
 
 const datasets = ['mnist', 'other1', 'other2'];
 
