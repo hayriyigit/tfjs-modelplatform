@@ -13,17 +13,30 @@
 
 .content {
   flex-grow: 1;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .flow {
-  height: 65%;
+  flex-grow: 1;
+  // height: 65%;
 }
 
 .result {
-  height: 30%;
+  min-height: 31%;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  transition: flex-grow 500ms ease-in-out;
+  overflow: hidden;
 }
+// .result:hover {
+//   flex-grow: 1;
+// }
 
 // node styles
 .node-main {
@@ -72,4 +85,8 @@
 .ant-modal-body {
   overflow-y: auto !important;
   height: 400px !important;
+}
+
+.echarts-for-react {
+  width: 100%;
 }

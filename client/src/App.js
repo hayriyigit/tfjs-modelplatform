@@ -4,6 +4,7 @@ import { ReactFlowProvider } from 'react-flow-renderer';
 // import components
 import SideBar from './components/SideBar';
 import Header from './components/Header';
+import Result from './components/Result';
 
 import './styles/global.scss';
 
@@ -13,11 +14,11 @@ export default function App() {
       <ReactFlowProvider>
         <SideBar />
         <div className="content">
-          <Header/>
+          <Header />
           <div className="flow">
             <ReactFlowComponent />
           </div>
-          <div className="result"></div>
+          <Result />
         </div>
       </ReactFlowProvider>
     </div>

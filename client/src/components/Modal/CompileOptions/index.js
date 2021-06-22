@@ -1,4 +1,4 @@
-import { memo, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Modal, message } from 'antd';
 import { useSocket } from '../../../contexts/SocketContext';
 import { useStoreState } from 'react-flow-renderer';
@@ -6,13 +6,13 @@ import { useStoreState } from 'react-flow-renderer';
 import CompileOptionsForm from './CompileOptionsForm';
 
 const CompileOptions = ({ visible, setVisibility }) => {
-  const { compile_model, compileStatus } = useSocket();
+  const { compile_model, setCompileStatus, socket } = useSocket();
   const elements = useStoreState((store) => store.nodes);
   const edges = useStoreState((store) => store.edges);
   const [compileOptions, setCompileOptions] = useState({
     optimizer: 'adadelta',
-    learning_rate: 0,
-    loss: 'binary_crossentropy',
+    learningRate: 0,
+    loss: 'binaryCrossentropy',
   });
 
   const onChange = (name, e) => {
@@ -22,17 +22,23 @@ const CompileOptions = ({ visible, setVisibility }) => {
     });
   };
 
-  const compileModel = () => {
-    compile_model(elements, edges, compileOptions);
+  const compileModel = async () => {
+    await compile_model(elements, edges, compileOptions);
   };
 
   useEffect(() => {
-    if (compileStatus) {
-      compileStatus.status
-        ? message.success('Model compiled successfully!')
-        : message.error('Error when compiling model!');
+    if (socket) {
+      socket.on('compile_status', async (data) => {
+        if (data.status) {
+          await setCompileStatus(true);
+          message.success(data.message);
+        } else {
+          await setCompileStatus(false);
+          message.error(data.message);
+        }
+      });
     }
-  }, [compileStatus]);
+  }, [socket]);
 
   return (
     <Modal
@@ -46,7 +52,7 @@ const CompileOptions = ({ visible, setVisibility }) => {
       height={200}
       draggable
     >
-      <CompileOptionsForm onChange={onChange} />
+      <CompileOptionsForm onChange={onChange} values={compileOptions} />
     </Modal>
   );
 };

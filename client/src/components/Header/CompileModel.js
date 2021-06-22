@@ -8,12 +8,8 @@ const CompileModel = () => {
 
   return (
     <>
-      <button className="" onClick={showModal}>
-        COMPILE MODEL
-      </button>
-      <CompileOptions 
-      visible={modalStatus} 
-      setVisibility={setModalStatus} />
+      <button onClick={showModal}>COMPILE MODEL</button>
+      <CompileOptions visible={modalStatus} setVisibility={setModalStatus} />
     </>
   );
 };

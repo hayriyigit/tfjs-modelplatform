@@ -11,7 +11,7 @@ export default function index() {
         {`
           .header {
             display: flex;
-            height: 25px;
+            height: 4%;
             padding: 1px 10px;
             gap: 15px;
             width: 100%;

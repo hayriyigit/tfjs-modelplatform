@@ -11,6 +11,7 @@ export default function DropoutForm({ onChange }) {
         max={1}
         step={0.05}
         isInt={false}
+        value={0}
       />
     </Form>
   );

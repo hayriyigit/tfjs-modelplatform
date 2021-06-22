@@ -4,7 +4,7 @@ import { NumberInput, SelectInput, SwitchInput } from '../../Utils';
 
 const { Panel } = Collapse;
 
-export default function CompileOptionsForm({ onChange }) {
+export default function CompileOptionsForm({ onChange, values }) {
   const [esSwitch, setEsSwitch] = useState(false);
   const [earlyStopping, setEarlyStopping] = useState({
     monitor: 'val_loss',
@@ -32,10 +32,11 @@ export default function CompileOptionsForm({ onChange }) {
     <Form className="train_form" layout="vertical">
       <NumberInput
         label="Batch Size"
-        name="batch_size"
+        name="batchSize"
         isInt={true}
         max={1024}
         onChange={onChange}
+        value={values.batchSize}
       />
       <NumberInput
         label="Epochs"
@@ -43,15 +44,17 @@ export default function CompileOptionsForm({ onChange }) {
         isInt={true}
         min={1}
         onChange={onChange}
+        value={values.epochs}
       />
       <NumberInput
         label="Validation Split"
-        name="validation_split"
+        name="validationSplit"
         isInt={false}
         step={0.05}
         max={0.8}
         min={0.2}
         onChange={onChange}
+        value={values.validationSplit}
       />
 
       <SwitchInput name="shuffle" title="Shuffle" onChange={onChange} />
@@ -59,7 +62,7 @@ export default function CompileOptionsForm({ onChange }) {
       <Collapse ghost>
         <Panel header="Callbacks" key="1">
           <SwitchInput
-            name="early_stopping"
+            name="earlyStopping"
             title="Early Stopping"
             onChange={(name, checked) => onESSwitchChange(name, checked)}
           />
@@ -77,6 +80,7 @@ export default function CompileOptionsForm({ onChange }) {
                 isInt={true}
                 min={0}
                 onChange={onESChange}
+                value={1}
               />
             </>
           )}

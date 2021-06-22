@@ -4,7 +4,7 @@ import { NumberInput, SelectInput } from '../../Utils';
 const { Panel } = Collapse;
 
 const padding = ['valid', 'same'];
-const data_format = ['channels_last', 'channels_first'];
+const dataFormat = ['channelsLast', 'channelsFirst'];
 
 export default function MaxPool2DForm({ onChange }) {
   return (
@@ -12,14 +12,16 @@ export default function MaxPool2DForm({ onChange }) {
       <NumberInput
         onChange={onChange}
         label="Pool Size"
-        name="pool_size"
+        name="poolSize"
         isInt={true}
+        value={2}
       />
       <NumberInput
         onChange={onChange}
         label="Strides"
         name="strides"
         isInt={true}
+        value={2}
       />
       <Collapse ghost>
         <Panel header="Advanced" key="1">
@@ -32,8 +34,8 @@ export default function MaxPool2DForm({ onChange }) {
           <SelectInput
             onChange={onChange}
             label="Data Format"
-            name="data_format"
-            options={data_format}
+            name="dataFormat"
+            options={dataFormat}
           />
         </Panel>
       </Collapse>

@@ -5,34 +5,34 @@ const { Panel } = Collapse;
 
 const activation = [
   'elu',
-  'exponential',
-  'gelu',
-  'hard_sigmoid',
+  'hardSigmoid',
   'linear',
   'relu',
+  'relu6',
   'selu',
   'sigmoid',
   'softmax',
   'softplus',
   'softsign',
-  'swish',
   'tanh',
+  'swish',
+  'mish',
 ];
-const kernel_initializer = [
+const kernelInitializer = [
   'constant',
-  'glorot_normal',
-  'glorot_uniform',
-  'he_normal',
-  'he_uniform',
+  'glorotNormal',
+  'glorotUniform',
+  'heNormal',
+  'heUniform',
   'identity',
-  'lecun_normal',
-  'lecun_uniform',
+  'leCunNormal',
+  'leCunUniform',
   'ones',
   'orthogonal',
-  'random_normal',
-  'random_uniform',
-  'truncated_normal',
-  'variance_scaling',
+  'randomNormal',
+  'randomUniform',
+  'truncatedNormal',
+  'varianceScaling',
   'zeros',
 ];
 
@@ -44,6 +44,7 @@ export default function DenseForm({ onChange }) {
         label="Units"
         name="units"
         isInt={true}
+        value={10}
       />
       <SelectInput
         onChange={onChange}
@@ -56,8 +57,8 @@ export default function DenseForm({ onChange }) {
           <SelectInput
             onChange={onChange}
             label="Kernel Initializer"
-            name="kernel_initializer"
-            options={kernel_initializer}
+            name="kernelInitializer"
+            options={kernelInitializer}
           />
         </Panel>
       </Collapse>

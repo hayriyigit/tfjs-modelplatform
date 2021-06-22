@@ -1,41 +1,29 @@
 import { Form } from 'antd';
-import { NumberInput, SelectInput } from '../../Utils'
+import { NumberInput, SelectInput } from '../../Utils';
 
 const optimizers = [
-  'adadelta',
+  'sgd',
+  'momentum',
   'adagrad',
+  'adadelta',
   'adam',
   'adamax',
-  'ftrl',
-  'gradient_descent',
-  'nadam',
   'rmsprop',
 ];
-
 const losses = [
-  'binary_crossentropy',
-  'categorical_crossentropy',
-  'categorical_hinge',
-  'cosine_similarity',
-  'hinge',
-  'huber',
-  'kl_divergence',
-  'kld',
-  'kullback_leibler_divergence',
-  'mean_absolute_error',
-  'mae',
-  'mean_absolute_percentage_error',
-  'mape',
-  'mean_squared_error',
-  'mse',
-  'mean_squared_logarithmic_error',
-  'msle',
-  'poisson',
-  'sparse_categorical_crossentropy',
-  'squared_hinge',
+  'absoluteDifference',
+  'computeWeightedLoss',
+  'cosineDistance',
+  'hingeLoss',
+  'huberLoss',
+  'logLoss',
+  'meanSquaredError',
+  'sigmoidCrossEntropy',
+  'softmaxCrossEntropy',
+  'categoricalCrossentropy',
 ];
 
-export default function CompileOptionsForm({ onChange }) {
+export default function CompileOptionsForm({ onChange, values }) {
   return (
     <Form layout="vertical">
       <SelectInput
@@ -46,10 +34,11 @@ export default function CompileOptionsForm({ onChange }) {
       />
       <NumberInput
         label="Learning Rate"
-        name="learning_rate"
+        name="learningRate"
         isInt={false}
         step={0.001}
         onChange={onChange}
+        value={values.learningRate}
       />
       <SelectInput
         label="Loss Function"

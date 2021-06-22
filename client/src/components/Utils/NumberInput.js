@@ -8,6 +8,7 @@ export default function printNumberInput({
   max,
   step,
   onChange,
+  value,
 }) {
   const [status, setStatus] = useState(true);
 
@@ -39,6 +40,7 @@ export default function printNumberInput({
         max={max ? max : null}
         step={step ? step : 1}
         onChange={onchange}
+        defaultValue={value}
       />
       <style jsx>
         {`

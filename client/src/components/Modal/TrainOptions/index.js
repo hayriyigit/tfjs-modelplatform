@@ -1,17 +1,17 @@
-import { memo, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Modal, message } from 'antd';
 import { useSocket } from '../../../contexts/SocketContext';
 
 import TrainOptionsForm from './TrainOptionsForm';
 
-const TrainOptions = memo(({ visible, setVisibility }) => {
-  const { start_train, compileStatus, trainStatus } = useSocket();
+const TrainOptions = ({ visible, setVisibility }) => {
+  const { start_train, compileStatus, setTrainStatus, socket } = useSocket();
   const [trainOptions, setTrainOptions] = useState({
-    batch_size: 1,
+    batchSize: 1,
     epochs: 1,
-    validation_split: 0.2,
+    validationSplit: 0.2,
     shuffle: false,
-    early_stopping: false,
+    earlyStopping: false,
   });
 
   const onChange = (name, e) => {
@@ -22,18 +22,16 @@ const TrainOptions = memo(({ visible, setVisibility }) => {
   };
 
   const trainModel = () => {
-    compileStatus && compileStatus.status
+    compileStatus
       ? start_train(trainOptions)
       : message.error("Model hasn't compiled yet!");
   };
 
   useEffect(() => {
-    if (trainStatus) {
-      trainStatus.status
-        ? message.success('Model trained successfully!')
-        : message.error('Error when training model!');
+    if (socket) {
+      socket.on('train_status', (data) => setTrainStatus(data));
     }
-  }, [trainStatus]);
+  }, [socket]);
 
   return (
     <Modal
@@ -47,9 +45,9 @@ const TrainOptions = memo(({ visible, setVisibility }) => {
       height={200}
       draggable
     >
-      <TrainOptionsForm onChange={onChange} />
+      <TrainOptionsForm onChange={onChange} values={trainOptions} />
     </Modal>
   );
-});
+};
 
 export default TrainOptions;

@@ -6,34 +6,34 @@ const { Panel } = Collapse;
 const padding = ['valid', 'same'];
 const activation = [
   'elu',
-  'exponential',
-  'gelu',
-  'hard_sigmoid',
+  'hardSigmoid',
   'linear',
   'relu',
+  'relu6',
   'selu',
   'sigmoid',
   'softmax',
   'softplus',
   'softsign',
-  'swish',
   'tanh',
+  'swish',
+  'mish',
 ];
-const depthwise_initializer = [
+const kernelInitializer = [
   'constant',
-  'glorot_normal',
-  'glorot_uniform',
-  'he_normal',
-  'he_uniform',
+  'glorotNormal',
+  'glorotUniform',
+  'heNormal',
+  'heUniform',
   'identity',
-  'lecun_normal',
-  'lecun_uniform',
+  'leCunNormal',
+  'leCunUniform',
   'ones',
   'orthogonal',
-  'random_normal',
-  'random_uniform',
-  'truncated_normal',
-  'variance_scaling',
+  'randomNormal',
+  'randomUniform',
+  'truncatedNormal',
+  'varianceScaling',
   'zeros',
 ];
 
@@ -45,18 +45,21 @@ export default function SepConv2DForm({ onChange }) {
         label="Filter Size"
         name="filters"
         isInt={true}
+        value={8}
       />
       <NumberInput
         onChange={onChange}
         label="Kernel Size"
-        name="kernel_size"
+        name="kernelSize"
         isInt={true}
+        value={3}
       />
       <NumberInput
         onChange={onChange}
         label="Strides"
         name="strides"
         isInt={true}
+        value={1}
       />
       <Collapse ghost>
         <Panel header="Advanced" key="1">
@@ -74,9 +77,9 @@ export default function SepConv2DForm({ onChange }) {
           />
           <SelectInput
             onChange={onChange}
-            label="Depthwise Initializer"
-            name="depthwise_initializer"
-            options={depthwise_initializer}
+            label="Kernel Initializer"
+            name="kernelInitializer"
+            options={kernelInitializer}
           />
         </Panel>
       </Collapse>

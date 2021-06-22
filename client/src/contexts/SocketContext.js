@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import io from 'socket.io-client';
+import { io } from 'socket.io-client';
 
 const SocketContext = createContext();
 
@@ -10,32 +10,43 @@ export function SocketProvider({ children }) {
   const [compileStatus, setCompileStatus] = useState(null);
   const [trainStatus, setTrainStatus] = useState(null);
 
+  const [metrics, setMetrics] = useState({
+    acc: [],
+    val_acc: [],
+    loss: [],
+    val_loss: [],
+  });
   const compile_model = (nodes, edges, compile_options) =>
     socket.emit('compile', { nodes, edges, compile_options });
 
-  const start_train = (trainOptions) =>
-    // ToDo: start train
+  const start_train = (trainOptions) => socket.emit('train', trainOptions);
 
   useEffect(() => {
     if (socket) {
-      socket.on('compile_status', (data) => {
-        const status = data['status'] === 'success';
-        setCompileStatus({ status, message: data.message });
+      socket.on('on_epoch_end', (data) => {
+        setMetrics((prev) => ({
+          acc: [...prev.acc, parseFloat(data.metrics.acc)],
+          val_acc: [...prev.val_acc, parseFloat(data.metrics.val_acc)],
+          loss: [...prev.loss, parseFloat(data.metrics.loss)],
+          val_loss: [...prev.val_loss, parseFloat(data.metrics.val_loss)],
+        }));
       });
     }
   }, [socket]);
 
   useEffect(() => {
-    console.log('Compile Status Changed in Context!');
-  }, [compileStatus]);
-
-  useEffect(() => {
-    const socketIo = io('http://127.0.0.1:8000');
+    const socketIo = io('http://20.74.178.133:8080', {
+      transports: ['websocket', 'polling'],
+      cors: {
+        origins: '*:*',
+      },
+    });
 
     setSocket(socketIo);
 
     function cleanup() {
       socketIo.disconnect();
+      socketIo.close();
     }
     return cleanup;
   }, []);
@@ -48,6 +59,7 @@ export function SocketProvider({ children }) {
     setCompileStatus,
     trainStatus,
     setTrainStatus,
+    metrics,
   };
   return (
     <SocketContext.Provider value={value}>{children}</SocketContext.Provider>
