@@ -6,7 +6,7 @@ import { Switch } from 'antd';
 export default function Train() {
   const [metric, setMetric] = useState('acc');
   const onChange = (e) => {
-    e ? setMetric('acc') : setMetric('loss');
+    e ? setMetric('loss') : setMetric('acc');
   };
   return (
     <div className="train_main">

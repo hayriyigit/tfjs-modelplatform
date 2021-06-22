@@ -19,7 +19,15 @@ export function SocketProvider({ children }) {
   const compile_model = (nodes, edges, compile_options) =>
     socket.emit('compile', { nodes, edges, compile_options });
 
-  const start_train = (trainOptions) => socket.emit('train', trainOptions);
+  const start_train = (trainOptions) => {
+    setMetrics({
+      acc: [],
+      val_acc: [],
+      loss: [],
+      val_loss: [],
+    });
+    socket.emit('train', trainOptions);
+  };
 
   useEffect(() => {
     if (socket) {
