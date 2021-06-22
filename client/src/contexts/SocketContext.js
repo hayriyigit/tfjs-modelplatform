@@ -35,7 +35,7 @@ export function SocketProvider({ children }) {
   }, [socket]);
 
   useEffect(() => {
-    const socketIo = io('http://20.74.178.133:8080', {
+    const socketIo = io('http://localhost:8001', {
       transports: ['websocket', 'polling'],
       cors: {
         origins: '*:*',

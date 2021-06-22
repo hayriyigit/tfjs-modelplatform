@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { auth } from '../firebase/firebase';
 import { useCookies } from 'react-cookie';
+import axios from 'axios';
 
 const AuthContext = createContext();
 
@@ -45,21 +46,17 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (!user) {
-        setCookie('token', '', {});
-      } else {
-        const token = await user.getIdToken();
-        const expires = new Date();
-        expires.setDate(Date.now() + 1000 * 60 * 60 * 24 * 14);
-        setCurrentUser(user);
-        // setCookie('token', token, {
-        //   path: '/',
-        //   expires,
-        //   maxAge: 1000,
-        //   // domain: 'localhost',
-        //   //secure: true,
-        //   // httpOnly: true,
-        //   // sameSite: 'strict',
-        // });
+        const token = document.cookie.replace(
+          /(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/,
+          '$1'
+        );
+        try {
+          axios.get(`http://localhost:8001/auth?token=${token}`).then((res) => {
+            auth.signInWithCustomToken(res.data.token);
+          });
+        } catch (e) {
+          console.log(e);
+        }
       }
       setLoading(false);
     });
