@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react';
-import { useSocket } from '../../../contexts/SocketContext';
+import { useEffect } from 'react';
+import { useSocket } from '../../../../contexts/SocketContext';
 import ReactECharts from 'echarts-for-react';
 import * as echarts from 'echarts/core';
-import myTheme from './theme';
+import myTheme from '../theme';
 
-export default function AccuracyGraph() {
-  const { metrics } = useSocket();
+const BarChart = ({ layer, mode }) => {
+  const { layers } = useSocket();
+  const data = mode === 'weight' ? layers[layer].weights : layers[layer].biases;
 
   useEffect(() => {
     echarts.registerTheme('theme', myTheme);
@@ -13,12 +14,12 @@ export default function AccuracyGraph() {
 
   const option = {
     legend: {
-      data: ['Accuracy', 'Validation Accuracy'],
+      data: [mode],
     },
     grid: { top: 40, right: 5, bottom: 0, left: 20, containLabel: true },
     xAxis: {
       type: 'category',
-      data: [...Array(metrics.acc.length).keys()],
+      data: [...Array(data.length).keys()],
     },
     yAxis: {
       type: 'value',
@@ -26,15 +27,8 @@ export default function AccuracyGraph() {
     series: [
       {
         name: `Accuracy`,
-        data: metrics.acc,
-        type: 'line',
-        sampling: 'lttb',
-        smooth: true,
-      },
-      {
-        name: `Validation Accuracy`,
-        data: metrics.val_acc,
-        type: 'line',
+        data: data,
+        type: 'bar',
         sampling: 'lttb',
         smooth: true,
       },
@@ -45,4 +39,6 @@ export default function AccuracyGraph() {
   };
 
   return <ReactECharts option={option} theme="theme" />;
-}
+};
+
+export default BarChart;

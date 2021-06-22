@@ -1,30 +1,33 @@
-import { useState, useEffect } from 'react';
-import AccuracyGraph from './AccuracyGraph';
-import LossGraph from './LossGraph';
-import { Switch } from 'antd';
+import { useState } from 'react';
+
+import { useSocket } from '../../../contexts/SocketContext';
+import Metrics from './Metrics';
+import LayerInfo from './LayerInfo';
 
 export default function Train() {
-  const [metric, setMetric] = useState('acc');
-  const onChange = (e) => {
-    e ? setMetric('loss') : setMetric('acc');
+  const [mode, setMode] = useState('metrics');
+  const { layers } = useSocket();
+
+  const handleLayerChange = (e) => {
+    setMode(e.target.innerHTML);
   };
+
   return (
     <div className="train_main">
       <div className="graph">
-        <div className="head">
-          <p>RESULT</p>
-          <div className="mode-switch">
-            <p>Accuracy</p>
-            <Switch onChange={onChange} size="small" />
-            <p>Loss</p>
-          </div>
-        </div>
-        {metric === 'acc' && <AccuracyGraph />}
-        {metric === 'loss' && <LossGraph />}
+        {mode === 'metrics' && <Metrics />}
+        {mode.match(/\/*.*_[a-zA-Z0-9]+/) && (
+          <LayerInfo layer={mode} switchMetrics={setMode} />
+        )}
       </div>
       <div className="layers">
         <div className="head">
           <p>LAYERS</p>
+        </div>
+        <div className="layer_list">
+          {Object.keys(layers).map((layerName) => (
+            <p onClick={handleLayerChange}>{layerName}</p>
+          ))}
         </div>
       </div>
       <style jsx>{`
@@ -58,6 +61,18 @@ export default function Train() {
         }
         .head button {
           align-self: center;
+        }
+        .layer_list {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          overflow: auto;
+        }
+        .layer_list p {
+          font-size: 18px;
+          cursor: pointer;
         }
       `}</style>
     </div>

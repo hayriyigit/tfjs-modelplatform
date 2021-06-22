@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { useSocket } from '../../../contexts/SocketContext';
+import { useSocket } from '../../../../contexts/SocketContext';
 import ReactECharts from 'echarts-for-react';
 import * as echarts from 'echarts/core';
-import myTheme from './theme';
+import myTheme from '../theme';
 
 export default function LossGraph() {
   const { metrics } = useSocket();

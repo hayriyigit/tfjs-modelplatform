@@ -16,6 +16,9 @@ export function SocketProvider({ children }) {
     loss: [],
     val_loss: [],
   });
+
+  const [layers, setLayers] = useState({});
+
   const compile_model = (nodes, edges, compile_options) =>
     socket.emit('compile', { nodes, edges, compile_options });
 
@@ -38,6 +41,9 @@ export function SocketProvider({ children }) {
           loss: [...prev.loss, parseFloat(data.metrics.loss)],
           val_loss: [...prev.val_loss, parseFloat(data.metrics.val_loss)],
         }));
+
+        setLayers(data.layers);
+        console.log(layers);
       });
     }
   }, [socket]);
@@ -68,6 +74,7 @@ export function SocketProvider({ children }) {
     trainStatus,
     setTrainStatus,
     metrics,
+    layers
   };
   return (
     <SocketContext.Provider value={value}>{children}</SocketContext.Provider>
