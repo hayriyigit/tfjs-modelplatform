@@ -6,7 +6,7 @@ export default function App() {
   return (
     <Router>
       <Switch>
-        <PrivateRoute exact path="/" component={Home} />
+        <PrivateRoute path="/" component={Home} />
       </Switch>
     </Router>
   );

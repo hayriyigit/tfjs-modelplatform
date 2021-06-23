@@ -16,17 +16,18 @@ const getId = () => `dndnode_${id++}`;
 
 export default function ReactFlowComponent() {
   const reactFlowWrapper = useRef(null);
+  const elementRef = useRef();
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
   const [elements, setElements] = useState([]);
 
+  elementRef.current = elements;
+
   const onChange = async (name, id, e) => {
-    setElements((els) => {
-      const index = els.findIndex((item) => item.id === id);
-      const node = els[index];
-      node.args = { ...node.args, [name]: e };
-      console.log(els);
-      return els;
-    });
+    const elements_copy = elementRef.current.slice();
+    const index = elements_copy.findIndex((item) => item.id === id);
+    elements_copy[index].args = { ...elements_copy[index].args, [name]: e };
+
+    setElements(elements_copy);
   };
 
   const onConnect = (params) => {

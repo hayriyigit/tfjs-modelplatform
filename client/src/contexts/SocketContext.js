@@ -19,8 +19,13 @@ export function SocketProvider({ children }) {
 
   const [layers, setLayers] = useState({});
 
-  const compile_model = (nodes, edges, compile_options) =>
-    socket.emit('compile', { nodes, edges, compile_options });
+  const compile_model = (nodes, edges, compile_options, homework) => {
+    console.log(nodes);
+    socket.emit('compile', {
+      data: { nodes, edges, compile_options },
+      homework,
+    });
+  };
 
   const start_train = (trainOptions) => {
     setMetrics({
@@ -74,7 +79,7 @@ export function SocketProvider({ children }) {
     trainStatus,
     setTrainStatus,
     metrics,
-    layers
+    layers,
   };
   return (
     <SocketContext.Provider value={value}>{children}</SocketContext.Provider>

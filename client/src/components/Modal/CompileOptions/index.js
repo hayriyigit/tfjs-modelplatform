@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react';
 import { Modal, message } from 'antd';
 import { useSocket } from '../../../contexts/SocketContext';
 import { useStoreState } from 'react-flow-renderer';
-
+import { useLocation } from 'react-router-dom';
 import CompileOptionsForm from './CompileOptionsForm';
 
 const CompileOptions = ({ visible, setVisibility }) => {
+  const location = useLocation();
   const { compile_model, setCompileStatus, socket } = useSocket();
   const elements = useStoreState((store) => store.nodes);
   const edges = useStoreState((store) => store.edges);
@@ -23,7 +24,7 @@ const CompileOptions = ({ visible, setVisibility }) => {
   };
 
   const compileModel = async () => {
-    await compile_model(elements, edges, compileOptions);
+    await compile_model(elements, edges, compileOptions, location.pathname);
   };
 
   useEffect(() => {
