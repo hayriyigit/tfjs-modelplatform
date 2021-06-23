@@ -16,28 +16,18 @@ const getId = () => `dndnode_${id++}`;
 
 export default function ReactFlowComponent() {
   const reactFlowWrapper = useRef(null);
-  const nodeRef = useRef();
-  const elementRef = useRef();
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
   const [elements, setElements] = useState([]);
-  const [currentNode, setCurrentNode] = useState('');
 
-  nodeRef.current = currentNode;
-  elementRef.current = elements;
-
-  const onChange = (name, e) => {
-    const node_index = elementRef.current.findIndex(
-      (item) => item.id === nodeRef.current
-    );
+  const onChange = async (name, id, e) => {
     setElements((els) => {
-      els[node_index].args[name] = e;
+      const index = els.findIndex((item) => item.id === id);
+      const node = els[index];
+      node.args = { ...node.args, [name]: e };
+      console.log(els);
       return els;
     });
   };
-
-  const onNodeMouseEnter = useCallback((event, node) => {
-    setCurrentNode(node.id);
-  }, []);
 
   const onConnect = (params) => {
     const source_node_index = elements.findIndex(
@@ -102,7 +92,6 @@ export default function ReactFlowComponent() {
         onLoad={onLoad}
         onDrop={onDrop}
         onDragOver={onDragOver}
-        onNodeMouseEnter={onNodeMouseEnter}
       >
         <Controls />
       </ReactFlow>

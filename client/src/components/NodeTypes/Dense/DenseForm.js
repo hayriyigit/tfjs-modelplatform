@@ -36,18 +36,18 @@ const kernelInitializer = [
   'zeros',
 ];
 
-export default function DenseForm({ onChange }) {
+export default function DenseForm({ onChange, id }) {
   return (
     <Form layout="vertical">
       <NumberInput
-        onChange={onChange}
+        onChange={(name, e) => onChange(name, id, e)}
         label="Units"
         name="units"
         isInt={true}
         value={10}
       />
       <SelectInput
-        onChange={onChange}
+        onChange={(name, e) => onChange(name, id, e)}
         label="Activation Function"
         name="activation"
         options={activation}
@@ -55,7 +55,7 @@ export default function DenseForm({ onChange }) {
       <Collapse ghost>
         <Panel header="Advanced" key="1">
           <SelectInput
-            onChange={onChange}
+            onChange={(name, e) => onChange(name, id, e)}
             label="Kernel Initializer"
             name="kernelInitializer"
             options={kernelInitializer}

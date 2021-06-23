@@ -1,11 +1,11 @@
 import { Form } from 'antd';
 import { NumberInput } from '../../Utils';
 
-export default function DropoutForm({ onChange }) {
+export default function DropoutForm({ onChange, id }) {
   return (
     <Form layout="vertical">
       <NumberInput
-        onChange={onChange}
+        onChange={(name, e) => onChange(name, id, e)}
         label="Rate"
         name="rate"
         max={1}

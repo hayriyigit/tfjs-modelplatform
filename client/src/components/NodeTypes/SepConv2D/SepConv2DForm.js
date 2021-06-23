@@ -37,18 +37,18 @@ const kernelInitializer = [
   'zeros',
 ];
 
-export default function SepConv2DForm({ onChange }) {
+export default function SepConv2DForm({ onChange, id }) {
   return (
     <Form layout="vertical">
       <NumberInput
-        onChange={onChange}
+        onChange={(name, e) => onChange(name, id, e)}
         label="Filter Size"
         name="filters"
         isInt={true}
         value={8}
       />
       <NumberInput
-        onChange={onChange}
+        onChange={(name, e) => onChange(name, id, e)}
         label="Kernel Size"
         name="kernelSize"
         isInt={true}
