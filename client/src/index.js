@@ -6,10 +6,10 @@ import { AuthProvider } from './contexts/AuthContext';
 import 'antd/dist/antd.min.css';
 
 render(
-  <SocketProvider>
-    <AuthProvider>
+  <AuthProvider>
+    <SocketProvider>
       <App />
-    </AuthProvider>
-  </SocketProvider>,
+    </SocketProvider>
+  </AuthProvider>,
   document.getElementById('root')
 );

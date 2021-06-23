@@ -1,26 +1,13 @@
-import ReactFlowComponent from './components/ReactFlowComponent';
-import { ReactFlowProvider } from 'react-flow-renderer';
-
-// import components
-import SideBar from './components/SideBar';
-import Header from './components/Header';
-import Result from './components/Result';
-
-import './styles/global.scss';
+import Home from './components/Home';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import PrivateRoute from './components/CustomRoutes/PrivateRoute';
 
 export default function App() {
   return (
-    <div className="container">
-      <ReactFlowProvider>
-        <SideBar />
-        <div className="content">
-          <Header />
-          <div className="flow">
-            <ReactFlowComponent />
-          </div>
-          <Result />
-        </div>
-      </ReactFlowProvider>
-    </div>
+    <Router>
+      <Switch>
+        <PrivateRoute exact path="/" component={Home} />
+      </Switch>
+    </Router>
   );
 }
