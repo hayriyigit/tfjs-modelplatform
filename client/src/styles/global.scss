@@ -84,7 +84,7 @@
 
 .ant-modal-body {
   overflow-y: auto !important;
-  height: 400px !important;
+  max-height: 400px !important;
 }
 
 .echarts-for-react {

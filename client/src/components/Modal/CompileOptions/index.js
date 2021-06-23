@@ -38,6 +38,14 @@ const CompileOptions = ({ visible, setVisibility }) => {
           message.error(data.message);
         }
       });
+      socket.on('homework_status', async (data) => {
+        if (data.status) {
+          setVisibility(false);
+          message.success('Task passed!');
+        } else {
+          message.error('Task failed! Check the model.');
+        }
+      });
     }
   }, [socket]);
 

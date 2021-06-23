@@ -20,7 +20,6 @@ export function SocketProvider({ children }) {
   const [layers, setLayers] = useState({});
 
   const compile_model = (nodes, edges, compile_options, homework) => {
-    console.log(nodes);
     socket.emit('compile', {
       data: { nodes, edges, compile_options },
       homework,
