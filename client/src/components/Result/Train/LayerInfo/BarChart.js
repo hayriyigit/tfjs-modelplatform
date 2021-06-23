@@ -26,7 +26,7 @@ const BarChart = ({ layer, mode }) => {
     },
     series: [
       {
-        name: `Accuracy`,
+        name: layer,
         data: data,
         type: 'bar',
         sampling: 'lttb',
