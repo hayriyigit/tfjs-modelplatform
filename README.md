@@ -31,7 +31,7 @@ cd client
 
 npm i
 ```
-Then start server:
+Then start client:
 ```
 npm start
 ```
